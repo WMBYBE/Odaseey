@@ -14,22 +14,8 @@ export default function Index() {
     >
 
       <Text>Odassey</Text>
-      <TextInput
-          onChangeText={onChangeText}
-          value={text}
-        />
-         <TextInput
-                  onChangeText={onChangeText}
-                  placeholder="password"
-                />
-       <Button
-                title="Login"
-                onPress={() => Alert.alert('logged in')}
-              />
-      <Button
-              title="Create Account"
-              onPress={() => Alert.alert('Create Account')}
-            />
+      <FlatList>
+      </FlatList>
     </View>
   );
 }
