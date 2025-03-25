@@ -14,8 +14,6 @@ export default function Index() {
     >
 
       <Text>Odassey</Text>
-      <FlatList>
-      </FlatList>
     </View>
   );
 }
