@@ -16,7 +16,7 @@ export default function Index() {
       <Text>Odassey</Text>
       <TextInput
           onChangeText={onChangeText}
-          value={text}
+         placeholder="username"
         />
          <TextInput
                   onChangeText={onChangeText}
