@@ -16,7 +16,9 @@ export default function Index() {
     >
 
       <Button onPress={() => router.push('/login')} title="Login"></Button>
-
+      <Text>hjolasdhouweyrhfhu</Text>
+      <Text>hjolasdhouweyrhfhu</Text>
+      <Button onPress={() => router.push('/home')} title="Home"></Button>
       <Text>Odaseey</Text>
     </View>
   );
