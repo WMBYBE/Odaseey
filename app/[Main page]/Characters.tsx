@@ -1,4 +1,3 @@
-//this would be the confirm page for when the user wants to refresh a task or ignore a task.
 import React from 'react';
 import {StyleSheet, Button, View, Text, Alert, TextInput} from 'react-native';
 import {SafeAreaView, SafeAreaProvider} from 'react-native-safe-area-context';
@@ -13,7 +12,7 @@ export default function Index() {
         alignItems: "center",
       }}
     >
-      <Text>Update</Text>
+      <Text>Characters</Text>
     </View>
   );
 

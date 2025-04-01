@@ -1,4 +1,5 @@
 import React from 'react';
+import { router } from 'expo-router';
 import {StyleSheet, Button, View, Text, Alert, TextInput} from 'react-native';
 import {SafeAreaView, SafeAreaProvider} from 'react-native-safe-area-context';
 
@@ -28,7 +29,7 @@ export default function Index() {
               />
       <Button
               title="Create Account"
-              onPress={() => Alert.alert('Create Account')}
+              onPress={() => router.navigate('/signup')}
             />
     </View>
   );
