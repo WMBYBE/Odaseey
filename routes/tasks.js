@@ -10,7 +10,7 @@ router.get('/', authenticateToken, (req, res) => {
   const userId = req.user.userId; // Get the user ID from the JWT
 
   const request = new Request(
-    `SELECT * FROM Tasks WHERE user_id = @userId`,
+    `SELECT * FROM Task_assignments WHERE user_id = @userId`,
     (err, rowCount, rows) => {
       if (err) {
         console.error(err);
