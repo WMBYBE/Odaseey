@@ -59,11 +59,11 @@ const Weekly = ['Task 1', 'Task 2',];
         backgroundColor: '#fcf5e9'
       }}
     > 
-    <text style={styles.title}>Tasks</text>
+    <Text style={styles.title}>Tasks</Text>
 
     {/* Daily Tasks */}
-    <text style={styles.header}>Daily Tasks</text>
-    <text style={styles.timer}>Resets in XX:XX:XX</text>           
+    <Text style={styles.header}>Daily Tasks</Text>
+    <Text style={styles.timer}>Resets in XX:XX:XX</Text>           
     <FlashList
       data={ Daily}
       numColumns={2}
@@ -76,8 +76,8 @@ const Weekly = ['Task 1', 'Task 2',];
     />
 
     {/* Weekly Tasks */}
-  <text style={styles.header}>Weekly Tasks</text>
-  <text style={styles.timer}>Resets in XX:XX:XX</text>   
+  <Text style={styles.header}>Weekly Tasks</Text>
+  <Text style={styles.timer}>Resets in XX:XX:XX</Text>   
   <FlashList
       data={ Weekly}
       numColumns={2}
