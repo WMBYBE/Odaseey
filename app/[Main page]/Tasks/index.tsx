@@ -9,7 +9,7 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#553fcf',
     marginHorizontal: 16,
-    padding: 20,
+    padding: 15,
     marginVertical: 8,
     borderTopLeftRadius: 8,
     borderTopRightRadius: 8,
@@ -20,6 +20,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     borderColor: 'Black',
     borderWidth: 2,
+    
   },
   DailyTasks: {
     borderColor: 'Black',
@@ -68,9 +69,9 @@ const Weekly = ['Task 1', 'Task 2',];
       data={ Daily}
       numColumns={2}
       renderItem={({ item }) => (
-      <View style={styles.container}>
-      <Text style={styles.item}>{item}</Text>
-      </View>
+        <TouchableOpacity style={styles.container} onPress={() => Alert.alert('Task selected')}>
+          <Text style={styles.item}>{item}</Text>
+        </TouchableOpacity>
         )}
       estimatedItemSize={6}
     />
@@ -82,16 +83,20 @@ const Weekly = ['Task 1', 'Task 2',];
       data={ Weekly}
       numColumns={2}
       renderItem={({ item }) => (
-        <View style={styles.container}>
-      <Text style={styles.item}>{item}</Text>
-      </View>
+      <TouchableOpacity style={styles.container} onPress={() => Alert.alert('Task selected')}>
+        <Text style={styles.item}>{item}</Text>
+      </TouchableOpacity>
         )}
       estimatedItemSize={6}
     />
 
 
-      <Button onPress={() => router.navigate('/[Main Page]/Tasks/progress')} title="Progress"></Button>
-      <Button onPress={() => router.navigate('/[Main Page]/Tasks/update')} title="Update"></Button>
+      <TouchableOpacity onPress={() => router.navigate('/[Main Page]/Tasks/progress')}>
+        <Text>{"Progress"}</Text>
+      </TouchableOpacity>
+      <TouchableOpacity onPress={() => router.navigate('/[Main Page]/Tasks/update')}>
+        <Text>{"Update"}</Text>
+      </TouchableOpacity>
     </View>
   );
 
