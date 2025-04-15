@@ -38,7 +38,6 @@ const styles = StyleSheet.create({
     right: 1,
   },
   button3: {
-
     position: 'absolute',
     bottom: 0,
     left: 0,
@@ -55,8 +54,10 @@ const styles = StyleSheet.create({
     textAlign: "center",
   },
   Character: {
-    width: 33,
-    height: 20,
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    height: 'auto'
   },
 });
 

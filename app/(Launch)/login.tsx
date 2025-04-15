@@ -1,8 +1,55 @@
 import React from 'react';
 import { router } from 'expo-router';
-import {StyleSheet, Button, View, Text, Alert, TextInput} from 'react-native';
+import {StyleSheet, Button, View, Text, Alert, TextInput, TouchableOpacity} from 'react-native';
 import {SafeAreaView, SafeAreaProvider} from 'react-native-safe-area-context';
 
+
+const styles = StyleSheet.create({
+  button: {
+    backgroundColor: '#553fcf',
+    marginHorizontal: 16,
+    padding: 20,
+    marginVertical: 20,
+    borderTopLeftRadius: 50,
+    borderTopRightRadius: 50,
+    borderBottomLeftRadius: 50,
+    borderBottomRightRadius: 50,
+    borderBottomWidth: 1,
+    width: '100%',
+    height: "80%",
+    alignItems: 'center',
+    borderColor: 'Black',
+    borderWidth: 2,
+    justifyContent: "center",
+  },
+
+  Input: {
+    backgroundColor: '#553fcf',
+    marginHorizontal: 16,
+    padding: 20,
+    marginVertical: 10,
+    borderTopLeftRadius: 50,
+    borderTopRightRadius: 50,
+    borderBottomLeftRadius: 50,
+    borderBottomRightRadius: 50,
+    borderLeftWidth: 10,
+    borderRightWidth: 10,
+    width: '40%',
+    height: "10%",
+    alignItems: 'center',
+    borderColor: 'Black',
+    borderWidth: 2,
+    justifyContent: "center",
+    color: 'white',
+    fontSize: 32,
+    textAlign: 'center',
+  },
+
+  buttonText: {
+    color: 'white',
+    fontSize: 32,
+  },
+});
 export default function Index() {
     const [text, onChangeText] = React.useState('Username');
   return (
@@ -16,22 +63,27 @@ export default function Index() {
     >
 
       <Text>Odassey</Text>
-      <TextInput
-          onChangeText={onChangeText}
-         placeholder="username"
-        />
-         <TextInput
-                  onChangeText={onChangeText}
-                  placeholder="password"
-                />
-       <Button
-                title="Login"
-                onPress={() => Alert.alert('logged in')}
-              />
-      <Button
-              title="Create Account"
-              onPress={() => router.navigate('/signup')}
-            />
+
+
+        <TextInput style={styles.Input}
+            onChangeText={onChangeText}
+          placeholder="Username"
+          />
+          <TextInput style={styles.Input}
+            onChangeText={onChangeText}
+            placeholder="Password"
+          />
+
+      <View>
+        <TouchableOpacity style={[styles.button]} onPress={() => Alert.alert('logged in')}>
+          <Text style={[styles.buttonText]} >{"Login"}</Text>
+        </TouchableOpacity>
+      </View>
+      <View>
+        <TouchableOpacity style={[styles.button]} onPress={() => router.navigate('/signup')}>
+          <Text style={[styles.buttonText]} >{"Sign Up"}</Text>
+        </TouchableOpacity>
+      </View>
     </View>
   );
 }
