@@ -73,7 +73,7 @@ export default function Index() {
        <SafeAreaProvider>
     <SafeAreaView style={styles.Character}>
       <Image resizeMode='contain'
-        source={require('../../assets/images/Characters/placeholder.png')}
+        source={require('../../assets/images/Characters/placeholder2.png')}
       />
     </SafeAreaView>
   </SafeAreaProvider>
