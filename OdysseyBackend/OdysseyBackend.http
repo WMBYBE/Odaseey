@@ -1,0 +1,6 @@
+@OdysseyBackend_HostAddress = http://localhost:5223
+
+GET {{OdysseyBackend_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

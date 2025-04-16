@@ -1,6 +1,6 @@
 const express = require('express');
 const connection = require('../db');
-const authenticateToken = require('../middleware/auth');
+const authenticateToken = require('./middleware/auth');
 const { Request } = require('tedious');
 
 const router = express.Router();

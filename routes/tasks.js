@@ -1,7 +1,7 @@
 const express = require('express');
 const connection = require('../db');
-const authenticateToken = require('../middleware/auth');
-const { Request } = require('tedious');
+const authenticateToken = require('./middleware/auth');
+const { Request, TYPES } = require('tedious');
 
 const router = express.Router();
 
@@ -17,11 +17,18 @@ router.get('/', authenticateToken, (req, res) => {
         return res.status(500).json({ error: 'Error fetching tasks' });
       }
 
-      res.json(rows);
+      const formatted = rows.map(row =>
+        row.reduce((acc, column) => {
+          acc[column.metadata.colName] = column.value;
+          return acc;
+        }, {})
+      );
+
+      res.json(formatted);
     }
   );
 
-  request.addParameter('userId', 'Int', userId);
+  request.addParameter('userId', TYPES.Int, userId);
   connection.execSql(request);
 });
 
