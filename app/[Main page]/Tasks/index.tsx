@@ -8,19 +8,23 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#553fcf',
-    marginHorizontal: 16,
+    marginHorizontal: 10,
     padding: 15,
-    marginVertical: 8,
+    marginVertical: 5,
     borderTopLeftRadius: 8,
     borderTopRightRadius: 8,
     borderBottomLeftRadius: 8,
     borderBottomRightRadius: 8,
-    borderBottomWidth: 1,
     width: "90%",
     alignItems: 'center',
     borderColor: 'Black',
     borderWidth: 2,
-    
+  },
+  list: {
+    borderColor: 'Black',
+    borderWidth: 10,
+    padding: 15,
+    marginHorizontal: 10
   },
   DailyTasks: {
     borderColor: 'Black',
@@ -65,7 +69,8 @@ const Weekly = ['Task 1', 'Task 2',];
     {/* Daily Tasks */}
     <Text style={styles.header}>Daily Tasks</Text>
     <Text style={styles.timer}>Resets in XX:XX:XX</Text>           
-    <FlashList
+    <View style={styles.list}>
+    <FlashList 
       data={ Daily}
       numColumns={2}
       renderItem={({ item }) => (
@@ -75,7 +80,7 @@ const Weekly = ['Task 1', 'Task 2',];
         )}
       estimatedItemSize={6}
     />
-
+</View> 
     {/* Weekly Tasks */}
   <Text style={styles.header}>Weekly Tasks</Text>
   <Text style={styles.timer}>Resets in XX:XX:XX</Text>   

@@ -1,6 +1,6 @@
 import React from 'react';
 import { router } from 'expo-router';
-import {StyleSheet, Button, View, Text, Alert, TextInput, TouchableOpacity} from 'react-native';
+import {StyleSheet,ImageBackground, Button, View, Text, Alert, TextInput, TouchableOpacity} from 'react-native';
 import {SafeAreaView, SafeAreaProvider} from 'react-native-safe-area-context';
 
 
@@ -44,6 +44,13 @@ const styles = StyleSheet.create({
     fontSize: 32,
     textAlign: 'center',
   },
+  backgroundImage: {
+    flex: 1,
+    padding: 10,
+    width: '100%',
+    height: '100%',
+  },
+
 
   buttonText: {
     color: 'white',
@@ -84,6 +91,12 @@ export default function Index() {
           <Text style={[styles.buttonText]} >{"Sign Up"}</Text>
         </TouchableOpacity>
       </View>
+      <ImageBackground
+        source={require('../../assets/images/login.png')} // Path to your image
+        style={styles.backgroundImage}
+        resizeMode="contain" // or "stretch", "contain", "repeat", "center"
+      >
+      </ImageBackground>
     </View>
   );
 }

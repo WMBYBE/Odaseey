@@ -62,7 +62,7 @@ export default function Index() {
       }}
     >
       <Text>Characters</Text>
-      <FlatList
+      <FlatList 
       numColumns = {3}
       data={DATA}
       renderItem={({item}) => {
