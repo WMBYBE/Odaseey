@@ -2,12 +2,12 @@ import * as React from 'react';
 import { useEffect } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
-import { initDatabase } from './initDB'; // adjust path if needed
+//import { initDatabase } from './initDB'; // adjust path if needed
 
 export default function App() {
-  useEffect(() => {
-    initDatabase();
-  }, []);
+ //useEffect(() => {
+  //  initDatabase();
+ // }, []);
 
   return (
     <View style={styles.container}>

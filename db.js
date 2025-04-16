@@ -1,16 +1,21 @@
+// db.js – Using Tedious to connect to Microsoft SQL Server
 const { Connection, Request } = require('tedious');
-        const config = require('./config'); // Create a config.js file for your database credentials
+const dbConfig = require('./config').db;  // Load DB credentials from config.js
 
-        const connection = new Connection(config.db);
+// Initialize connection using the config settings
+const connection = new Connection(dbConfig);
 
-        connection.on('connect', (err) => {
-          if (err) {
-            console.error('Error connecting to database:', err);
-          } else {
-            console.log('Connected to database');
-          }
-        });
+// Attach an event handler to know when connection succeeds or fails
+connection.on('connect', (err) => {
+  if (err) {
+    console.error('Database connection failed:', err);
+  } else {
+    console.log('Connected to OdaysseyDB database.');
+  }
+});
 
-        connection.connect();
+// Start the connection attempt
+connection.connect();
 
-        module.exports = connection;
+// Export the connection object for use in other modules
+module.exports = connection;
