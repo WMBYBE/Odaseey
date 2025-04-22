@@ -53,6 +53,17 @@ const styles = StyleSheet.create({
 
 export default function Index() {
 
+  //const Daily = await db.getFirstAsync('SELECT ta.task_id, t.title 
+  // FROM Task_Assignments ta 
+  // JOIN tasks t ON ta.task_id = t.task_id
+  // WHERE due_date = not tommorow?;
+  // AND task_frequency = 'Daily');
+
+  //const Weekly = await db.getFirstAsync('SELECT ta.task_id, t.title 
+  // FROM Task_Assignments ta 
+  // JOIN tasks t ON ta.task_id = t.task_id
+  // WHERE due_date = not Next week??;
+  // AND task_frequency = 'Weekly');
 const Daily = ['Task 1', 'Task 2', 'Task 3', 'Task 4' ];
 const Weekly = ['Task 1', 'Task 2',];
 
