@@ -1,8 +1,10 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import {StyleSheet, Button, View, ViewStyle, Text, Alert, TextInput, SectionList, StatusBar, TouchableOpacity} from 'react-native';
 import {SafeAreaView, SafeAreaProvider} from 'react-native-safe-area-context';
 import { FlashList } from "@shopify/flash-list";
 import { router } from 'expo-router';
+import moment from 'moment';
+
 
 const styles = StyleSheet.create({
   container: {
@@ -56,16 +58,63 @@ export default function Index() {
   //const Daily = await db.getFirstAsync('SELECT ta.task_id, t.title 
   // FROM Task_Assignments ta 
   // JOIN tasks t ON ta.task_id = t.task_id
-  // WHERE due_date = not tommorow?;
-  // AND task_frequency = 'Daily');
+  // WHERE due_date = not tommorow?
+  // AND task_frequency = 'Daily';);
 
   //const Weekly = await db.getFirstAsync('SELECT ta.task_id, t.title 
   // FROM Task_Assignments ta 
   // JOIN tasks t ON ta.task_id = t.task_id
   // WHERE due_date = not Next week??;
-  // AND task_frequency = 'Weekly');
+  // AND task_frequency = 'Weekly';);
 const Daily = ['Task 1', 'Task 2', 'Task 3', 'Task 4' ];
 const Weekly = ['Task 1', 'Task 2',];
+
+const [remainingTimeDay, setRemainingTimeDay] = useState(getTimeRemainingDay());
+
+useEffect(() => {
+  const intervalId = setInterval(() => {
+    setRemainingTimeDay(getTimeRemainingDay());
+  }, 1000);
+
+  return () => clearInterval(intervalId);
+}, []);
+
+function getTimeRemainingDay() {
+  const now = moment();
+  const endOfDay = moment().endOf('day');
+  const diff = endOfDay.diff(now);
+  const duration = moment.duration(diff);
+
+  return {
+    hours: duration.hours(),
+    minutes: duration.minutes(),
+    seconds: duration.seconds(),
+  };
+}
+
+const [remainingTimeWeek, setRemainingTimeWeek] = useState(getTimeRemainingWeek());
+
+useEffect(() => {
+  const intervalId = setInterval(() => {
+    setRemainingTimeWeek(getTimeRemainingWeek());
+  }, 1000);
+
+  return () => clearInterval(intervalId);
+}, []);
+
+function getTimeRemainingWeek() {
+  const now = moment();
+  const endOfWeek = moment().endOf('week');
+  const diff = endOfWeek.diff(now);
+  const duration = moment.duration(diff);
+
+  return {
+    days: duration.days(),
+    hours: duration.hours(),
+    minutes: duration.minutes(),
+    seconds: duration.seconds(),
+  };
+}
 
   return (
     <View
@@ -79,7 +128,11 @@ const Weekly = ['Task 1', 'Task 2',];
 
     {/* Daily Tasks */}
     <Text style={styles.header}>Daily Tasks</Text>
-    <Text style={styles.timer}>Resets in XX:XX:XX</Text>           
+    <Text style={styles.timer}>
+        {String(remainingTimeDay.hours).padStart(2, '0')}:
+        {String(remainingTimeDay.minutes).padStart(2, '0')}:
+        {String(remainingTimeDay.seconds).padStart(2, '0')}
+      </Text>           
     <View style={styles.list}>
     <FlashList 
       data={ Daily}
@@ -94,7 +147,10 @@ const Weekly = ['Task 1', 'Task 2',];
 </View> 
     {/* Weekly Tasks */}
   <Text style={styles.header}>Weekly Tasks</Text>
-  <Text style={styles.timer}>Resets in XX:XX:XX</Text>   
+  <Text style={styles.timer}>{String(remainingTimeWeek.days).padStart(2, '0')}:
+      {String(remainingTimeWeek.hours).padStart(2, '0')}:
+        {String(remainingTimeWeek.minutes).padStart(2, '0')}:
+        {String(remainingTimeWeek.seconds).padStart(2, '0')}</Text>   
   <FlashList
       data={ Weekly}
       numColumns={2}
