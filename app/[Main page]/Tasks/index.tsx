@@ -147,7 +147,7 @@ function getTimeRemainingWeek() {
 </View> 
     {/* Weekly Tasks */}
   <Text style={styles.header}>Weekly Tasks</Text>
-  <Text style={styles.timer}>{String(remainingTimeWeek.days).padStart(2, '0')}:
+  <Text style={styles.timer}>{String(remainingTimeWeek.days).padStart(1, '0')}:
       {String(remainingTimeWeek.hours).padStart(2, '0')}:
         {String(remainingTimeWeek.minutes).padStart(2, '0')}:
         {String(remainingTimeWeek.seconds).padStart(2, '0')}</Text>   
