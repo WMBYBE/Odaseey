@@ -54,10 +54,9 @@ const styles = StyleSheet.create({
     textAlign: "center",
   },
   Character: {
-    display: 'flex',
+    flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    height: 'auto'
   },
 });
 
@@ -70,11 +69,13 @@ export default function Index() {
         backgroundColor: '#fcf5e9',
       }}
     >
-       <SafeAreaProvider>
+  <SafeAreaProvider>
     <SafeAreaView style={styles.Character}>
-      <Image resizeMode='contain'
-        source={require('../../assets/images/Characters/placeholder2.png')}
-      />
+    <TouchableOpacity>
+        <Image resizeMode='contain'
+          source={require('../../assets/images/Characters/placeholder2.png')}
+        />
+      </TouchableOpacity>
     </SafeAreaView>
   </SafeAreaProvider>
 
