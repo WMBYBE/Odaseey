@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
-import {StyleSheet, Button, View, ViewStyle, Text, Alert, TextInput, SectionList, StatusBar, TouchableOpacity} from 'react-native';
+import {StyleSheet, Button, View, ViewStyle, Text, Alert, TextInput, SectionList, StatusBar, TouchableOpacity, Modal} from 'react-native';
 import {SafeAreaView, SafeAreaProvider} from 'react-native-safe-area-context';
 import { FlashList } from "@shopify/flash-list";
-import { router } from 'expo-router';
+import { Link, router } from 'expo-router';
 import moment from 'moment';
 
 
@@ -26,7 +26,8 @@ const styles = StyleSheet.create({
     borderColor: 'Black',
     borderWidth: 10,
     padding: 15,
-    marginHorizontal: 10
+    marginHorizontal: 10,
+    height: "35%",
   },
   DailyTasks: {
     borderColor: 'Black',
@@ -159,7 +160,7 @@ function getTimeRemainingWeek() {
         <Text style={styles.item}>{item}</Text>
       </TouchableOpacity>
         )}
-      estimatedItemSize={6}
+      estimatedItemSize={10}
     />
 
 

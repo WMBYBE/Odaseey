@@ -1,5 +1,5 @@
 import React from 'react';
-import {StyleSheet, Button, View, Text, Alert, TextInput, FlatList, Pressable, Image} from 'react-native';
+import {StyleSheet, Button, View, Text, Alert, TextInput, FlatList, Pressable, Image, Platform} from 'react-native';
 import {SafeAreaView, SafeAreaProvider} from 'react-native-safe-area-context';
 import { router } from 'expo-router';
 
@@ -7,16 +7,16 @@ export default function Index() {
   const styles = StyleSheet.create({
     character: {
       flex: 1,
-    padding: 150,
+    padding: 50,
     marginVertical: 8,
     marginHorizontal: 20,
-    borderTopLeftRadius: 80,
-    borderTopRightRadius: 80,
-    borderBottomLeftRadius: 80,
-    borderBottomRightRadius: 80,
+    borderTopLeftRadius: 40,
+    borderTopRightRadius: 40,
+    borderBottomLeftRadius: 40,
+    borderBottomRightRadius: 40,
     borderColor: 'Black',
-    width: '100%',
-    height: '100%',
+    width: '90%',
+    height: '90%',
     borderWidth: 8,
     },
   });
@@ -52,6 +52,7 @@ export default function Index() {
       image: () => <Image style={[styles.character]} source={require('../../assets/images/Characters/placeholder2.png')} />,
     },
   ];
+  if (Platform.OS === 'web') {
   return (
     
     <View
@@ -76,5 +77,29 @@ export default function Index() {
     />
     </View>
   );
-
+  }
+  return (
+    
+    <View
+      style={{
+        flex: 2,
+        alignItems: "center",
+        backgroundColor: '#fcf5e9',
+      }}
+    >
+      <Text>Characters</Text>
+      <FlatList 
+      numColumns = {2}
+      data={DATA}
+      renderItem={({item}) => {
+        return (
+          <Pressable>
+            {item.image()}
+            <Text>{item.title}</Text>
+          </Pressable>
+        );
+      }}
+    />
+    </View>
+  );
 }

@@ -13,11 +13,9 @@ const styles = StyleSheet.create({
     fontSize: 40,
     width: "100%",
     textAlign: "center",
-    padding: 200,
+    padding: 100,
   },
-  Character: {
-    height: 'auto'
-  },
+
 });
 
 export default function Index() {
@@ -31,15 +29,9 @@ export default function Index() {
       }}
     >
       <Text style={styles.title}>Settings</Text>
-      <SafeAreaProvider>
-          <SafeAreaView style={styles.Character}>
-          <TouchableOpacity>
               <ImageBackground resizeMode='contain'
               source={require('../../../assets/images/login.png')}
               />
-            </TouchableOpacity>
-          </SafeAreaView>
-        </SafeAreaProvider>
       <Text style={styles.soon}>Coming Soon!</Text>
         
     </View>
