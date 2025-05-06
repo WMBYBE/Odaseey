@@ -70,7 +70,22 @@ export default function Index() {
       }}
     >
 
+<<<<<<< Updated upstream
       <Text>Odassey</Text>
+=======
+      <Text>Odayssey</Text>
+
+
+        <TextInput style={styles.Input}
+            onChangeText={onChangeText}
+          placeholder="Username"
+          />
+          <TextInput style={styles.Input}
+            onChangeText={onChangeText}
+            placeholder="Password"
+          />
+
+>>>>>>> Stashed changes
       <View>
           <ImageBackground
             source={require('../../assets/images/login.png')}
