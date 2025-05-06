@@ -20,7 +20,7 @@ export default function Index() {
     const shuffled = [...pool].sort(() => 0.5 - Math.random());
     return shuffled.slice(0, count).map((task, index) => ({
       ...task,
-      id: Date.now() + index, // unique ID
+      id: Date.now() + index,
     }));
   }
 
@@ -68,7 +68,7 @@ export default function Index() {
   
       const lastDailyReset = await getLastReset('daily');
       if (!lastDailyReset || now.toDateString() !== new Date(lastDailyReset).toDateString()) {
-        const newDailyTasks = getRandomTasks(dailyTaskPool, 3);
+        const newDailyTasks = getRandomTasks(dailyTaskPool, 4);
         await saveTasks('daily', newDailyTasks);
         await setLastReset('daily');
         setDailyTasks(newDailyTasks);
