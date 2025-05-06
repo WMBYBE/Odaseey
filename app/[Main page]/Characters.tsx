@@ -1,105 +1,59 @@
 import React from 'react';
-import {StyleSheet, Button, View, Text, Alert, TextInput, FlatList, Pressable, Image, Platform} from 'react-native';
-import {SafeAreaView, SafeAreaProvider} from 'react-native-safe-area-context';
+import {StyleSheet, View, Text, FlatList, Pressable, Image, Platform, Alert} from 'react-native';
 import { router } from 'expo-router';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import { characterImages } from '../data/CharacterImages'
+
 
 export default function Index() {
-  const styles = StyleSheet.create({
-    character: {
-      flex: 1,
-    padding: 50,
-    marginVertical: 8,
-    marginHorizontal: 20,
-    borderTopLeftRadius: 40,
-    borderTopRightRadius: 40,
-    borderBottomLeftRadius: 40,
-    borderBottomRightRadius: 40,
-    borderColor: 'Black',
-    width: '90%',
-    height: '90%',
-    borderWidth: 8,
-    },
-  });
   const DATA = [
-    {
-      id: '1',
-      title: 'placeholder',
-      image: () => <Image style={[styles.character]} source={require('../../assets/images/Characters/placeholder.png')} />,
-    },
-    {
-      id: '2',
-      title: 'placeholder 2',
-      image: () => <Image style={[styles.character]} source={require('../../assets/images/Characters/placeholder2.png')} />,
-    },
-    {
-      id: '3',
-      title: 'placeholder 3',
-      image: () => <Image style={[styles.character]} source={require('../../assets/images/Characters/placeholder.png')} />,
-    },
-    {
-      id: '4',
-      title: 'placeholder 4',
-      image: () => <Image style={[styles.character]} source={require('../../assets/images/Characters/placeholder2.png')} />,
-    },
-    {
-      id: '5',
-      title: 'placeholder',
-      image: () => <Image style={[styles.character]} source={require('../../assets/images/Characters/placeholder.png')} />,
-    },
-    {
-      id: '6',
-      title: 'placeholder 2',
-      image: () => <Image style={[styles.character]} source={require('../../assets/images/Characters/placeholder2.png')} />,
-    },
+    { id: '1', key: 'Kiwi', title: 'Kiwi' },
+    { id: '2', key: 'Monkey', title: 'Monkey' },
   ];
-  if (Platform.OS === 'web') {
+  const handleCharacterSelect = async (key: string) => {
+    try {
+      await AsyncStorage.setItem('selectedCharacterKey', key);
+      router.replace('../');
+    } catch (error) {
+      console.error('Error saving character:', error);
+    }
+  };
+
+  const renderItem = ({ item }: any) => {
+    return (
+      <Pressable onPress={() => handleCharacterSelect(item.key)}>
+        <Image style={styles.character} source={characterImages[item.key]} />
+        <Text>{item.title}</Text>
+      </Pressable>
+    );
+  };
+
   return (
-    
     <View
       style={{
-        flex: 4,
-        alignItems: "center",
+        flex: 1,
+        alignItems: 'center',
         backgroundColor: '#fcf5e9',
       }}
     >
-      <Text>Characters</Text>
-      <FlatList 
-      numColumns = {3}
-      data={DATA}
-      renderItem={({item}) => {
-        return (
-          <Pressable>
-            {item.image()}
-            <Text>{item.title}</Text>
-          </Pressable>
-        );
-      }}
-    />
+      <Text style={{ fontSize: 32, margin: 20 }}>Characters</Text>
+      <FlatList
+        numColumns={Platform.OS === 'web' ? 3 : 2}
+        data={DATA}
+        renderItem={renderItem}
+        keyExtractor={(item) => item.id}
+      />
     </View>
-  );
-  }
-  return (
-    
-    <View
-      style={{
-        flex: 2,
-        alignItems: "center",
-        backgroundColor: '#fcf5e9',
-      }}
-    >
-      <Text>Characters</Text>
-      <FlatList 
-      numColumns = {2}
-      data={DATA}
-      renderItem={({item}) => {
-        return (
-          <Pressable>
-            {item.image()}
-            <Text>{item.title}</Text>
-          </Pressable>
-        );
-      }}
-    />
-    </View>
-  );
+  )
 }
+
+const styles = StyleSheet.create({
+  character: {
+  padding: 50,
+  marginVertical: 8,
+  marginHorizontal: 20,
+  borderRadius: 40,
+  borderColor: 'Black',
+  borderWidth: 8,
+  },
+});
