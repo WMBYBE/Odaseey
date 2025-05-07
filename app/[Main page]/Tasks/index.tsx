@@ -262,10 +262,11 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   list: {
-    color: 'white',
-    fontSize: 20,
+    borderColor: 'Black',
     borderWidth: 10,
     padding: 5,
+    marginHorizontal: 10,
+    height: "35%",
   },
   item: {
     color: 'white',
@@ -276,6 +277,7 @@ const styles = StyleSheet.create({
     width: '100%',
     textAlign: 'center',
     marginVertical: 10,
+    
   },
   timer: {
     fontSize: 16,

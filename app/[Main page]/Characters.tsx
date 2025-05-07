@@ -49,11 +49,17 @@ export default function Index() {
 
 const styles = StyleSheet.create({
   character: {
+    flex: 1,
   padding: 50,
   marginVertical: 8,
   marginHorizontal: 20,
-  borderRadius: 40,
+  borderTopLeftRadius: 40,
+  borderTopRightRadius: 40,
+  borderBottomLeftRadius: 40,
+  borderBottomRightRadius: 40,
   borderColor: 'Black',
+  width: '90%',
+  height: '90%',
   borderWidth: 8,
   },
 });
