@@ -30,7 +30,7 @@ export default function Index() {
         backgroundColor: '#fcf5e9'
       }}
     >
-      <Text style={styles.title}>Progress</Text>
+      <Text style={styles.title}>Unlocks</Text>
       <ImageBackground resizeMode='contain'
                     source={require('../../assets/images/login.png')}
                     />

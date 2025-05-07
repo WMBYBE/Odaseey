@@ -33,7 +33,13 @@
           "backgroundColor": "#fcf5e9"
         }
       ],
-      "expo-sqlite"
+      [
+      "expo-sqlite",
+      {
+        "enableFTS": true,
+        "useSQLCipher": true,
+      },
+    ],
     ],
     "experiments": {
       "typedRoutes": true

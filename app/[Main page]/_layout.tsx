@@ -28,11 +28,6 @@ export default function Layout() {
             title: 'Change Settings',
           }}
         />
-        <Drawer.Screen
-          name="Tasks/update" 
-          options={{
-          }}
-        />
       </Drawer>
     </GestureHandlerRootView>
   );
