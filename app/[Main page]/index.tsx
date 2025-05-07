@@ -37,8 +37,8 @@ useEffect(() => {
 
 
       <View style={[styles.button1]}>
-        <TouchableOpacity style={[styles.button]} onPress={() => router.navigate('[Main Page]/Progress')}>
-          <Text style={[styles.buttonText]} >{"Progress"}</Text>
+        <TouchableOpacity style={[styles.button]} onPress={() => router.navigate('[Main Page]/Unlocks')}>
+          <Text style={[styles.buttonText]} >{"Unlocks"}</Text>
         </TouchableOpacity>
       </View>
       <View style={[styles.button2]}>
