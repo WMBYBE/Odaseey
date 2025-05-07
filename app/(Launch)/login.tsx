@@ -69,7 +69,6 @@ export default function Index() {
         backgroundColor: '#fcf5e9',
       }}
     >
-
       <Text>Odassey</Text>
       <View>
           <ImageBackground
