@@ -9,6 +9,7 @@ export default function Index() {
   const DATA = [
     { id: '1', key: 'Kiwi', title: 'Kiwi' },
     { id: '2', key: 'Monkey', title: 'Monkey' },
+    { id: '3', key: 'Tree', title: 'Tree' },
   ];
   const handleCharacterSelect = async (key: string) => {
     try {
@@ -49,17 +50,17 @@ export default function Index() {
 
 const styles = StyleSheet.create({
   character: {
-    flex: 1,
-  padding: 50,
-  marginVertical: 8,
-  marginHorizontal: 20,
-  borderTopLeftRadius: 40,
-  borderTopRightRadius: 40,
-  borderBottomLeftRadius: 40,
-  borderBottomRightRadius: 40,
-  borderColor: 'Black',
-  width: '90%',
-  height: '90%',
-  borderWidth: 8,
-  },
-});
+      flex: 1,
+    padding: 50,
+    marginVertical: 8,
+    marginHorizontal: 20,
+    borderTopLeftRadius: 40,
+    borderTopRightRadius: 40,
+    borderBottomLeftRadius: 40,
+    borderBottomRightRadius: 40,
+    borderColor: 'Black',
+    width: '90%',
+    height: '90%',
+    borderWidth: 8,
+    },
+  });
