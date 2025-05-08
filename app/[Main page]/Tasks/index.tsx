@@ -16,6 +16,7 @@ export default function Index() {
   const [remainingTimeWeek, setRemainingTimeWeek] = useState(getTimeRemainingWeek());
   const [selectedTaskType, setSelectedTaskType] = useState<'daily' | 'weekly' | null>(null);
   
+  //algorithm to get random tasks
   function getRandomTasks(pool: Omit<Task, 'id'>[], count: number): Task[] {
     const shuffled = [...pool].sort(() => 0.5 - Math.random());
     return shuffled.slice(0, count).map((task, index) => ({
@@ -25,18 +26,18 @@ export default function Index() {
   }
 
   useEffect(() => {
-    const seedTasksIfEmpty = async () => {
+    const seedTasksIfEmpty = async () => { //ensures that there are tasks
       const existingDaily = await getTasks('daily') as Task[];
-       const existingWeekly = await getTasks('weekly') as Task[];
+      const existingWeekly = await getTasks('weekly') as Task[];
   
       if (existingDaily.length === 0) {
-        const randomDailyTasks = getRandomTasks(dailyTaskPool, 4); 
+        const randomDailyTasks = getRandomTasks(dailyTaskPool, 4); //asigns 4 daily tasks
         await saveTasks('daily', randomDailyTasks);
         setDailyTasks(randomDailyTasks); 
       }
   
       if (existingWeekly.length === 0) {
-        const randomWeeklyTasks = getRandomTasks(weeklyTaskPool, 2); 
+        const randomWeeklyTasks = getRandomTasks(weeklyTaskPool, 2); //assigns 2 weekly tasks
         await saveTasks('weekly', randomWeeklyTasks);
         setWeeklyTasks(randomWeeklyTasks); 
       }
@@ -63,7 +64,7 @@ export default function Index() {
   }, []);
 
   useEffect(() => {
-    const checkAndResetTasks = async () => {
+    const checkAndResetTasks = async () => { //resets tasks at daily/weekly reset
       const now = new Date();
   
       const lastDailyReset = await getLastReset('daily');
@@ -95,7 +96,7 @@ export default function Index() {
     checkAndResetTasks();
   }, []);
   
-  function getTimeRemainingDay() {
+  function getTimeRemainingDay() {  //function used for countdown timer
     const now = moment();
     const endOfDay = moment().endOf('day');
     const diff = endOfDay.diff(now);
@@ -116,7 +117,7 @@ export default function Index() {
     return () => clearInterval(intervalId);
   }, []);
   
-  function getTimeRemainingWeek() {
+  function getTimeRemainingWeek() { //function for countdown timers
     const now = moment();
     const endOfWeek = moment().endOf('week');
     const diff = endOfWeek.diff(now);
@@ -130,14 +131,14 @@ export default function Index() {
     };
   }
 
-  const handleTaskPress = (task: Task, type: 'daily' | 'weekly') => {
+  const handleTaskPress = (task: Task, type: 'daily' | 'weekly') => { 
     setSelectedTask(task);
     setSelectedTaskType(type); 
-    setModalVisible(true);
+    setModalVisible(true); //opens modal on task press
   
   };
 
-  const handleCompleteTask = async (task: Task, type: 'daily' | 'weekly') => {
+  const handleCompleteTask = async (task: Task, type: 'daily' | 'weekly') => { //handles completion of tasks
     if (task) {
       const updatedTask = { ...task, completed: true };
 
@@ -159,7 +160,7 @@ export default function Index() {
         setWeeklyTasks(updatedTasks);            
       }
   
-      setModalVisible(false);  
+      setModalVisible(false);  //closes modal after task is updated
     }
   };
 
@@ -167,6 +168,7 @@ export default function Index() {
     setModalVisible(false);
   };
 //---------------TESTING ONLY-------------------------------------------
+//Refreshs the task assignment
   const rerollTasks = async () => {
     const newDaily = getRandomTasks(dailyTaskPool, 4);
     const newWeekly = getRandomTasks(weeklyTaskPool, 2);
@@ -179,7 +181,7 @@ export default function Index() {
   };
   //------------------------------------------------------------------------
   return (
-    <View style={styles.page}> 
+  <View style={styles.page}> 
     <Text style={styles.title}>Tasks</Text>
 
     {/* Daily */}
@@ -188,58 +190,58 @@ export default function Index() {
         {String(remainingTimeDay.hours).padStart(2, '0')}:
         {String(remainingTimeDay.minutes).padStart(2, '0')}:
         {String(remainingTimeDay.seconds).padStart(2, '0')}
-      </Text>      
+    </Text>      
 
     <View style={styles.list}>
-    <FlashList 
-      data={ dailyTasks}
-      numColumns={2}
-      renderItem={({ item }) => (
-        <TouchableOpacity style={[styles.container, item.completed && styles.completedTask,]}  onPress={() => handleTaskPress(item, 'daily')}>
-          <Text style={styles.item}>{item.title}</Text>
-        </TouchableOpacity>
-        )}
-      estimatedItemSize={6}
-    />
-</View> 
-    {/* Weekly */}
-  <Text style={styles.header}>Weekly Tasks</Text>
-  <Text style={styles.timer}>{String(remainingTimeWeek.days).padStart(1, '0')}:
-      {String(remainingTimeWeek.hours).padStart(2, '0')}:
+      <FlashList 
+        data={ dailyTasks}
+        numColumns={2}
+        renderItem={({ item }) => (
+          <TouchableOpacity style={[styles.container, item.completed && styles.completedTask,]}  onPress={() => handleTaskPress(item, 'daily')}>
+            <Text style={styles.item}>{item.title}</Text>
+          </TouchableOpacity>
+          )}
+        estimatedItemSize={6}
+      />
+    </View> 
+      {/* Weekly */}
+    <Text style={styles.header}>Weekly Tasks</Text>
+    <Text style={styles.timer}>{String(remainingTimeWeek.days).padStart(1, '0')}:
+        {String(remainingTimeWeek.hours).padStart(2, '0')}:
         {String(remainingTimeWeek.minutes).padStart(2, '0')}:
         {String(remainingTimeWeek.seconds).padStart(2, '0')}</Text>   
-  <FlashList
-      data={ weeklyTasks}
-      numColumns={2}
-      renderItem={({ item }) => (
-      <TouchableOpacity style={[styles.container, item.completed && styles.completedTask,]} onPress={() => handleTaskPress(item, 'weekly')}>
+    <FlashList
+        data={ weeklyTasks}
+        numColumns={2}
+        renderItem={({ item }) => (
+        <TouchableOpacity style={[styles.container, item.completed && styles.completedTask,]} onPress={() => handleTaskPress(item, 'weekly')}>
         <Text style={styles.item}>{item.title}</Text>
-      </TouchableOpacity>
-        )}
-      estimatedItemSize={10}
-    />
-
-<Button title="Reroll Tasks" onPress={rerollTasks} />
-
-      <Modal visible={modalVisible} animationType="slide" onRequestClose={closeModal}>
-        <View style={styles.modalContent}>
-          {selectedTask && (
-            <>
-              <Text style={styles.modalTitle}>{selectedTask.title}</Text>
-              <Text style={styles.modalDescription}>{selectedTask.description}</Text>
-              <Text style={styles.modalXp}>XP Reward: {selectedTask.xpReward}</Text>
-              <Text style={styles.modalStatus}>
-                {selectedTask.completed ? 'Completed' : 'Not Completed'}
-              </Text>
-              {!selectedTask.completed && (
-                <Button title="Mark as Complete"  onPress={() => handleCompleteTask(selectedTask!, selectedTaskType!)} />
-              )}
-              <Button title="Close" onPress={closeModal} />
-            </>
+        </TouchableOpacity>
           )}
-        </View>
-      </Modal>
-    </View>
+        estimatedItemSize={10}
+      />
+
+    <Button title="Reroll Tasks" onPress={rerollTasks} />
+    {/* Modal for viewing task info and marking as complete */}
+    <Modal visible={modalVisible} animationType="slide" onRequestClose={closeModal}>
+      <View style={styles.modalContent}>
+        {selectedTask && (
+          <>
+            <Text style={styles.modalTitle}>{selectedTask.title}</Text>
+            <Text style={styles.modalDescription}>{selectedTask.description}</Text>
+            <Text style={styles.modalXp}>XP Reward: {selectedTask.xpReward}</Text>
+            <Text style={styles.modalStatus}>
+              {selectedTask.completed ? 'Completed' : 'Not Completed'}
+            </Text>
+            {!selectedTask.completed && (
+              <Button title="Mark as Complete"  onPress={() => handleCompleteTask(selectedTask!, selectedTaskType!)} />
+            )}
+            <Button title="Close" onPress={closeModal} />
+          </>
+        )}
+      </View>
+    </Modal>
+  </View>
   );
 
 

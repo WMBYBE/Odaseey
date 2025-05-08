@@ -1,5 +1,6 @@
 export const characterImages: Record<string, any> = {
-    Kiwi: require('../../assets/images/Characters/placeholder.png'),
-    Monkey: require('../../assets/images/Characters/placeholder2.png'),
-    Tree: require('../../assets/images/Characters/tree.png'),
+    Hazen: require('../../assets/images/Characters/Hazen.png'),
+    Lemmy: require('../../assets/images/Characters/Lemmy.png'),
+    Nix: require('../../assets/images/Characters/Nix.png'),
+    Troy: require('../../assets/images/Characters/Troy.png'),
   };

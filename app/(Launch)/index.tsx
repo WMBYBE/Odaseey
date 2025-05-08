@@ -1,11 +1,9 @@
 import React from 'react';
-import {StyleSheet, Button, View, Text, Alert, TextInput} from 'react-native';
-import {SafeAreaView, SafeAreaProvider} from 'react-native-safe-area-context';
+import {Button, View, Text} from 'react-native';
 import { router } from 'expo-router';
 
 
 export default function Index() {
-    const [text, onChangeText] = React.useState('Username');
   return (
     <View
       style={{
