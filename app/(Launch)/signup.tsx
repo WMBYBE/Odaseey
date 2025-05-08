@@ -1,13 +1,56 @@
 import React from 'react';
-import { router } from 'expo-router';
+
 import {StyleSheet, Button, View, Text, Alert, TextInput, TouchableOpacity, ImageBackground} from 'react-native';
-import {SafeAreaView, SafeAreaProvider} from 'react-native-safe-area-context';
 
 
+
+export default function Index() {
+    const [text, onChangeText] = React.useState('Username');
+  return (
+    <View
+      style={{
+        flex: 2,
+        justifyContent: "center",
+        alignItems: "center",
+        backgroundColor: '#fcf5e9'
+      }}
+    >
+
+      <Text>Odassey</Text>
+            <View>
+                <ImageBackground
+                  source={require('../../assets/images/login.png')}
+                  style={styles.backgroundImage}
+                  resizeMode="stretch" // or "stretch", "contain", "repeat", "center"
+                >
+      
+                  <View>
+                  <TextInput style={styles.Input}
+                        onChangeText={onChangeText}
+                        placeholder="Email"
+                      />
+                    <TextInput style={styles.Input}
+                        onChangeText={onChangeText}
+                      placeholder="Username"
+                      />
+                      <TextInput style={styles.Input}
+                        onChangeText={onChangeText}
+                        placeholder="Password"
+                      />
+                    </View>
+                    <View style={[styles.button]}>
+                      <TouchableOpacity style={[styles.border]} onPress={() => Alert.alert('Registered. Welcome to Odayssey')}>
+                        <Text style={[styles.buttonText]} >{"Sign up"}</Text>
+                      </TouchableOpacity>
+                  </View>
+                </ImageBackground>
+            </View>
+          </View>
+  );
+}
 const styles = StyleSheet.create({
   button: {
-    flexDirection: 'row',
-    justifyContent: "space-between",
+    height: "15%",
     textAlign: 'center',
   },
 
@@ -58,47 +101,3 @@ const styles = StyleSheet.create({
     borderWidth: 2,
   },
 });
-export default function Index() {
-    const [text, onChangeText] = React.useState('Username');
-  return (
-    <View
-      style={{
-        flex: 1,
-        justifyContent: "center",
-        alignItems: "center",
-        backgroundColor: '#fcf5e9'
-      }}
-    >
-
-      <Text>Odassey</Text>
-            <View>
-                <ImageBackground
-                  source={require('../../assets/images/login.png')}
-                  style={styles.backgroundImage}
-                  resizeMode="stretch" // or "stretch", "contain", "repeat", "center"
-                >
-      
-                  <View>
-                  <TextInput style={styles.Input}
-                        onChangeText={onChangeText}
-                        placeholder="Email"
-                      />
-                    <TextInput style={styles.Input}
-                        onChangeText={onChangeText}
-                      placeholder="Username"
-                      />
-                      <TextInput style={styles.Input}
-                        onChangeText={onChangeText}
-                        placeholder="Password"
-                      />
-                    </View>
-                    <View style={[styles.button]}>
-                      <TouchableOpacity style={[styles.border]} onPress={() => Alert.alert('Registered. Welcome to Odayssey')}>
-                        <Text style={[styles.buttonText]} >{"Sign up"}</Text>
-                      </TouchableOpacity>
-                  </View>
-                </ImageBackground>
-            </View>
-          </View>
-  );
-}

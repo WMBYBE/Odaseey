@@ -1,7 +1,6 @@
 import React from 'react';
 import { router } from 'expo-router';
-import {StyleSheet,ImageBackground, Button, View, Text, Alert, TextInput, TouchableOpacity} from 'react-native';
-import {SafeAreaView, SafeAreaProvider} from 'react-native-safe-area-context';
+import {StyleSheet,ImageBackground, View, Text, Alert, TextInput, TouchableOpacity} from 'react-native';
 
 
 const styles = StyleSheet.create({
